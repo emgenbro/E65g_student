@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,22 +21,46 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Z-qH-eIo" userLabel="LifeGrid">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="259"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-zA-9EU">
+                                <rect key="frame" x="16" y="20" width="288" height="411"/>
+                                <subviews>
+                                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESB-ar-EpZ" userLabel="LifeGrid">
+                                        <rect key="frame" x="29" y="90" width="230" height="230"/>
+                                        <color key="backgroundColor" red="0.068011008203029633" green="0.46268957853317261" blue="0.96602910757064819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.24141779541969299" green="0.47918587923049927" blue="0.91567593812942505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ESB-ar-EpZ" secondAttribute="height" multiplier="1:1" id="FCu-z9-NO1"/>
+                                            <constraint firstAttribute="width" secondItem="ESB-ar-EpZ" secondAttribute="height" multiplier="1:1" id="tpF-NK-PuU"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ESB-ar-EpZ" firstAttribute="height" secondItem="LbE-zA-9EU" secondAttribute="height" priority="750" id="6Qo-mG-oAA"/>
+                                    <constraint firstItem="ESB-ar-EpZ" firstAttribute="centerY" secondItem="LbE-zA-9EU" secondAttribute="centerY" id="IUk-dK-9AG"/>
+                                    <constraint firstItem="ESB-ar-EpZ" firstAttribute="width" relation="lessThanOrEqual" secondItem="LbE-zA-9EU" secondAttribute="width" multiplier="0.8" id="X2P-vS-Exi"/>
+                                    <constraint firstItem="ESB-ar-EpZ" firstAttribute="centerX" secondItem="LbE-zA-9EU" secondAttribute="centerX" id="YMF-HZ-nog"/>
+                                    <constraint firstItem="ESB-ar-EpZ" firstAttribute="width" secondItem="LbE-zA-9EU" secondAttribute="width" priority="750" id="csR-Jk-zoA"/>
+                                    <constraint firstItem="ESB-ar-EpZ" firstAttribute="height" relation="lessThanOrEqual" secondItem="LbE-zA-9EU" secondAttribute="height" multiplier="0.8" id="rKt-Rc-Fbe"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="LbE-zA-9EU" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Qns-Ac-Xbz"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="LbE-zA-9EU" secondAttribute="bottom" id="nRg-Ht-nk6"/>
+                            <constraint firstItem="LbE-zA-9EU" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="p4D-tK-8tz"/>
+                            <constraint firstItem="LbE-zA-9EU" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="vcI-7z-Vs1"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Simulation" image="first" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320.07042253521126"/>
+            <point key="canvasLocation" x="750" y="-321.25"/>
         </scene>
         <!--Instrumentation-->
         <scene sceneID="wg7-f3-ORb">
@@ -44,7 +71,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
