@@ -101,12 +101,16 @@ typealias Position = (row: Int, col: Int)
 enum CellState {
     // ** Your Problem 2 code goes here! Replace the contents of CellState **
     //  This shell code is here so that at all times the playground compiles and runs
-    case empty
-    
+    case alive, empty, born, died
+ 
     var isAlive: Bool {
-        return false
+        switch self {
+            case .alive, .born: return true
+            default: return false
+        }
     }
 }
+
 /*:
  ## Problem 3:
  In the struct Cell below:
@@ -117,9 +121,10 @@ enum CellState {
 // A struct representing a Cell in Conway's Game of Life
 struct Cell {
     // ** Your Problem 3 code goes here! replace the following two lines **
-    var position: Position
-    var state: CellState
+    var position = Position(row: 0,col: 0)
+    var state = CellState.empty
 }
+
 /*:
  ## Problem 4:
  I am providing the following function, `map2` immediately below.
@@ -129,28 +134,28 @@ struct Cell {
  */
 // ** Your Problem 4.1 answer goes here **
 /*
- 
+    An underscore tells Swift that the parameter should have no label when called.
  */
 /*:
  2. what is the type of the `transform` variable?
  */
 // ** Your Problem 4.2 answer goes here **
 /*
- 
+  It is a function taking 2 ints and returns something of type T
  */
 /*:
  3. what is the return type of `map2`?
  */
 // ** Your Problem 4.3 answer goes here **
 /*
- 
+    It is an array of an array of type T
  */
 /*:
  4. what is `T` in this declaration?
  */
 // ** Your Problem 4.4 answer goes here **
 /*
- 
+    It is a generic paramenter.
  */
 // A function which is like the standard map function but
 // which will operate only on a two dimensional array
@@ -175,7 +180,7 @@ func map2<T>(_ rows: Int, _ cols: Int, transform: (Int, Int) -> T) -> [[T]] {
 */
 // ** Your Problem 5 comment goes here! **
 /*
- 
+    The varible named offsets in the struct Grid represent the relative positions of a given cells neighbors.
  */
 /*:
  ## Problem 6:
@@ -217,8 +222,8 @@ struct Grid {
     ]
     
     // ** Your Problem 6 code goes here! Change the following two lines **
-    var rows: Int = 0
-    var cols: Int = 0
+    var rows: Int = 10
+    var cols: Int = 10
     var cells: [[Cell]] = [[Cell]]()
     
     init(_ rows: Int,
