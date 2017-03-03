@@ -230,11 +230,20 @@ struct Grid {
          _ cols: Int,
          cellInitializer: (Int, Int) -> CellState = { _,_ in .empty } ) {
         // ** Your Problem 7 code goes here! **
+        self.rows = rows
+        self.cols = cols
+        cells = [[Cell]](repeatElement([Cell](repeatElement(Cell(), count: cols)), count: rows))
+        
         map2(rows, cols) { row, col in
             // ** Your Problem 8 code goes here! **
+            cells[row][col].position = (row, col)
+            cells[row][col].state = cellInitializer(row, col)
         }
     }
 }
+
+//var myG = Grid(11,11)
+//myG.cells.first?.first?.state
 /*:
  The next two problems apply to the extension to `Grid` immediately below.
  
