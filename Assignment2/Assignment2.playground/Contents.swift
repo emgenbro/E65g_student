@@ -425,15 +425,13 @@ extension Grid {
                 return nil
             }
             return cells[row][col]
-            
         }
         set {
             // ** Your Problem 14 `set` code goes here! replace the following line **
-            guard let x = newValue, where row >= 0 && row <= rows && col >= 0  && col <= cols else {
+            guard let cell = value where row >= 0 && row <= rows && col >= 0  && col <= cols else {
                 return
             }
-            cells[row][col] = x
-            
+            cells[row][col] = cell
         }
     }
 }
