@@ -280,14 +280,14 @@ struct Grid {
  */
 // ** your problem 10.1 answer goes here.
 /*
- 
+  'of' is an argument label that can be used in calling the function to make the code more expressive.
  */
 /*:
  2. Explain in one sentence when you would use the word `cell` in relation to this function
  */
 // ** your problem 10.2 answer goes here.
 /*
- 
+    'cell' is a paramenter name that is used within the body of the function.
  */
 // An extension of Grid to add a function for computing the positions
 // of the 8 neighboring cells of a given cell
@@ -297,10 +297,15 @@ extension Grid {
     func neighbors(of cell: Cell) -> [Position] {
         return Grid.offsets.map {
             // ** Your Problem 9 Code goes here! replace the following line **
-            return Position(row: $0, col: $1)
+            return Position(
+                row: (((cell.position.row + $0) % rows) + rows) % rows,
+                col: (((cell.position.col + $1) % cols) + cols) % cols)
         }
     }
 }
+//var g = Grid.init(13,10)
+//g.neighbors(of: g.cells[10][2])
+
 /*:
  ## Problem 11:
  I am providing the following function, reduce2. Answer the following questions
@@ -309,21 +314,21 @@ extension Grid {
  */
 // ** Your Problem 11.1 answer goes here **
 /*
- 
+    Combine takes the values of row and column and sums them together
  */
 /*:
  2. what is the return type of reduce2?
  */
 // ** Your Problem 11.2 answer goes here **
 /*
- 
+    Int
  */
 /*:
  3. why is there no T parameter here as in map2 above?
  */
 // ** Your Problem 11.3 answer goes here **
 /*
- 
+    Reduce is not a generic function and only takes an Int
  */
 
 // A function which is useful for counting things in an array of arrays of things
@@ -334,6 +339,7 @@ func reduce2(_ rows: Int, _ cols: Int, combine: (Int, Int, Int) -> Int) -> Int  
         }
     }
 }
+
 /*:
  ## Problem 12:
  In the extension to Grid below, write precisely one line of code which:
