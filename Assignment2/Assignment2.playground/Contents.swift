@@ -507,10 +507,9 @@ extension Grid {
 
 extension Grid {
     func livingNeighbors(of cell: Cell) -> Int {
-        
         return self
             .neighbors(of: cell)
-            .reduce(0)
+            .reduce(0) {
                 guard let neighborCell = self[$1.row, $1.col] else { return $0 }
                 // ** Problem 18 code goes here!  replace the following 2 lines **
                 return (neighborCell.state.isAlive ? $0 + 1 : $0)
