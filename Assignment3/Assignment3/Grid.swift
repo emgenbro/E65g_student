@@ -55,6 +55,14 @@ public enum CellState : String {
             self = .empty
         }
     }
+    public func toggle(value: CellState) -> CellState {
+        switch value {
+        case .empty, .died:
+            return .alive
+        case .alive, .born:
+            return .empty
+        }
+    }
 }
 
 public struct Cell {

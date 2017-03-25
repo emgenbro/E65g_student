@@ -59,16 +59,25 @@ import UIKit
                     origin: origin,
                     size: cgSize
                 )
-                //if grid[i][j] {
-                //    let path = UIBezierPath(ovalIn: subRect)
-                //    gridColor.setFill()
-                //    path.fill()
-                //}
-                //if arc4random_uniform(2) == 1 {
-                    let path = UIBezierPath(ovalIn: subRect)
+                let path = UIBezierPath(ovalIn: subRect)
+                // 4. implement a drawRect: method for GridView which: (40 points)
+                //    •	draws the correct set of grid lines in the view using the techniques shown in class.
+                //      Set the gridlines to have width as specified in the //gridWidth property and color as in gridColor
+                //    •	draws a circle inside of every grid cell and fills the circle with the appropriate color
+                //      for the grid cell drawn from the Grid struct discussed in Problem 2.  e.g. for grid cell (0,0)
+                //      fetch the zero'th array from grid and then fetch the CellState value from the zero'th position
+                //      of the array and color the circle using the color specified in IB. Repeat for the other values
+                switch grid[(i, j)] {
+                case .alive:
+                    livingColor.setFill()
+                case .empty:
+                    emptyColor.setFill()
+                case .born:
                     bornColor.setFill()
-                    path.fill()
-                //}
+                case .died:
+                    diedColor.setFill()
+                }
+                path.fill()
             }
         }
         
@@ -101,6 +110,46 @@ import UIKit
         //draw the stroke
         gridColor.setStroke()
         path.stroke()
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastTouchedPosition = process(touches: touches)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastTouchedPosition = process(touches: touches)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastTouchedPosition = nil
+    }
+    
+    // Updated since class
+    typealias Position = (row: Int, col: Int)
+    var lastTouchedPosition: Position?
+    
+    func process(touches: Set<UITouch>) -> Position? {
+        guard touches.count == 1 else { return nil }
+        let pos = convert(touch: touches.first!)
+        guard lastTouchedPosition?.row != pos.row
+            || lastTouchedPosition?.col != pos.col
+            
+            else { return pos }
+        // 5. Using touch handling techniques shown in class  and  the toggle method of CellState, toggle the value of a
+        //    touched cell from Empty to Living or from Living to Empty depending the current state of the cell and cause a redisplay to happen
+        grid[(pos.row,pos.col)] = grid[(pos.row, pos.col)].toggle(value: grid[(pos.row, pos.col)])
+        setNeedsDisplay()
+        return pos
+    }
+    
+    func convert(touch: UITouch) -> Position {
+        let touchY = touch.location(in: self).y
+        let gridHeight = frame.size.height
+        let row = touchY / gridHeight * CGFloat(self.size)
+        let touchX = touch.location(in: self).x
+        let gridWidth = frame.size.width
+        let col = touchX / gridWidth * CGFloat(self.size)
+        let position = (row: Int(row), col: Int(col))
+        return position
     }
 
     
