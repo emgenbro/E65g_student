@@ -197,3 +197,7 @@ func gliderInitializer(row: Int, col: Int) -> CellState {
     }
 }
 
+func emptyInitializer(row: Int, col: Int) -> CellState {
+    return .empty
+}
+
