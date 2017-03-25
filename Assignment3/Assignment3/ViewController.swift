@@ -10,9 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // 6. Add a button labeled: "Step" which will iterate the grid when pressed using your modified version of Grid
+    @IBOutlet weak var gofGrid: GridView!
     
-    @IBOutlet weak var stepButton: UIButton!
 
+    @IBAction func stepButtonAction(_ sender: Any) {
+        gofGrid.stepGrid()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,11 +26,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //IBAction func nextGridState(_ sender : Any){
-        //nextGridState(sender)
-    //}
-
     
 }
 

@@ -53,21 +53,29 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bR-H5-gBN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caC-y9-hPc">
                                 <rect key="frame" x="171" y="444" width="32" height="30"/>
                                 <state key="normal" title="Step"/>
+                                <connections>
+                                    <action selector="stepButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NVA-MA-h90"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2Ho-yI-Wep" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6d3-z4-bOT"/>
+                            <constraint firstItem="2Ho-yI-Wep" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="176" id="87y-Fv-ikY"/>
                             <constraint firstItem="2Ho-yI-Wep" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-17.5" id="FDF-Rd-va6"/>
-                            <constraint firstItem="6bR-H5-gBN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xnb-Jb-Z5O"/>
+                            <constraint firstItem="caC-y9-hPc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ej0-6K-m0L"/>
                             <constraint firstItem="2Ho-yI-Wep" firstAttribute="width" secondItem="2Ho-yI-Wep" secondAttribute="height" multiplier="1:1" id="kTh-TW-coU"/>
+                            <constraint firstItem="caC-y9-hPc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kn9-c4-8GF"/>
                             <constraint firstItem="2Ho-yI-Wep" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="176" id="mYg-UE-Wvu"/>
-                            <constraint firstItem="6bR-H5-gBN" firstAttribute="top" secondItem="2Ho-yI-Wep" secondAttribute="bottom" constant="8" id="ysJ-qo-4pz"/>
+                            <constraint firstItem="caC-y9-hPc" firstAttribute="top" secondItem="2Ho-yI-Wep" secondAttribute="bottom" constant="8" id="sBI-Lb-Fy1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gofGrid" destination="2Ho-yI-Wep" id="alO-xC-kAZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
