@@ -10,6 +10,7 @@
 		791CC99F1E9EF4880075E728 /* InstrumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791CC99E1E9EF4880075E728 /* InstrumentationViewController.swift */; };
 		791CC9A11E9EF5760075E728 /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791CC9A01E9EF5760075E728 /* SimulationViewController.swift */; };
 		791CC9A31E9EF5AC0075E728 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791CC9A21E9EF5AC0075E728 /* StatisticsViewController.swift */; };
+		79723A651EA2DECD005EF147 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79723A641EA2DECD005EF147 /* Engine.swift */; };
 		797E41BC1E9C5C2F00CA24CC /* Assignment 4.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 797E41BB1E9C5C2F00CA24CC /* Assignment 4.rtf */; };
 		FB475A381E8828EF00D2EAD3 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB475A371E8828EF00D2EAD3 /* Grid.swift */; };
 		FBAD2E071E2BE38C008207C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD2E061E2BE38C008207C0 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 		791CC99E1E9EF4880075E728 /* InstrumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentationViewController.swift; sourceTree = "<group>"; };
 		791CC9A01E9EF5760075E728 /* SimulationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
 		791CC9A21E9EF5AC0075E728 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		79723A641EA2DECD005EF147 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		797E41BB1E9C5C2F00CA24CC /* Assignment 4.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Assignment 4.rtf"; sourceTree = "<group>"; };
 		FB475A371E8828EF00D2EAD3 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		FBAD2E031E2BE38C008207C0 /* Assignment4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment4.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 				791CC99E1E9EF4880075E728 /* InstrumentationViewController.swift */,
 				791CC9A01E9EF5760075E728 /* SimulationViewController.swift */,
 				791CC9A21E9EF5AC0075E728 /* StatisticsViewController.swift */,
+				79723A641EA2DECD005EF147 /* Engine.swift */,
 			);
 			path = Assignment4;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBAD2E071E2BE38C008207C0 /* AppDelegate.swift in Sources */,
+				79723A651EA2DECD005EF147 /* Engine.swift in Sources */,
 				791CC9A11E9EF5760075E728 /* SimulationViewController.swift in Sources */,
 				FB475A381E8828EF00D2EAD3 /* Grid.swift in Sources */,
 				791CC99F1E9EF4880075E728 /* InstrumentationViewController.swift in Sources */,
