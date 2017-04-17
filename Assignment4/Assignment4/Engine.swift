@@ -41,7 +41,7 @@ protocol EngineProtocol {
 }
 
 class StandardEngine: EngineProtocol {
-    private static var instance = StandardEngine(10, 10)
+    private static var instance : StandardEngine?
     var delegate: EngineDelegate?
     var grid: GridProtocol  {
         didSet {
@@ -60,7 +60,10 @@ class StandardEngine: EngineProtocol {
     }
     
     static func getInstance() -> StandardEngine {
-        return instance
+        if(self.instance == nil){
+            self.instance = StandardEngine(10, 10)
+        }
+        return instance!
     }
 
   

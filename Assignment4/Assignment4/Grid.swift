@@ -82,6 +82,10 @@ public struct Grid: GridProtocol {
         size = GridSize(rows, cols)
         lazyPositions(self.size).forEach { self[$0.row, $0.col] = cellInitializer($0) }
     }
+    public func emptyInitializer(row: Int, col: Int) -> CellState {
+        return .empty
+    }
+    
 }
 
 extension Grid: Sequence {
@@ -140,4 +144,8 @@ public extension Grid {
         default: return .empty
         }
     }
+}
+
+public protocol GridViewDataSource {
+    subscript (row: Int, col: Int) -> CellState { get set }
 }
