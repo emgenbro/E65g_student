@@ -16,8 +16,6 @@ class StatisticsViewController : UIViewController {
     @IBOutlet weak var deadTextField: UITextField!
     
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let nc = NotificationCenter.default
@@ -26,7 +24,7 @@ class StatisticsViewController : UIViewController {
             forName: name,
             object: nil,
             queue: nil) { (n) in
-                self.updateStats(withGrid: StandardEngine.getInstance().grid)
+                self.updateStats(forGrid: StandardEngine.getInstance().grid)
         }
     }
     
@@ -35,17 +33,17 @@ class StatisticsViewController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateStats(withGrid: GridProtocol){
+    func updateStats(forGrid: GridProtocol){
         
         var empty = 0
         var born = 0
         var alive = 0
         var dead = 0
         
-        (0 ..< withGrid.size.rows).forEach { i in
-            (0 ..< withGrid.size.cols).forEach { j in
+        (0 ..< forGrid.size.rows).forEach { i in
+            (0 ..< forGrid.size.cols).forEach { j in
                 
-                switch withGrid[j,i]
+                switch forGrid[j,i]
                 {
                 case CellState.empty:
                     empty += 1
@@ -62,10 +60,6 @@ class StatisticsViewController : UIViewController {
         bornTextField.text = String(born)
         aliveTextField.text = String(alive)
         deadTextField.text = String(dead)
-        
-        
-    
     }
-    
 }
 
