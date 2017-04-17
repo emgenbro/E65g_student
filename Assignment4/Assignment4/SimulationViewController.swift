@@ -17,7 +17,7 @@
 
 import UIKit
 
-class SimulationViewController : UIViewController, EngineDelegate, GridViewDataSource {
+class SimulationViewController : UIViewController, EngineDelegate {
     
     
     @IBOutlet weak var gridView: GridView!
@@ -28,18 +28,28 @@ class SimulationViewController : UIViewController, EngineDelegate, GridViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        loadThisView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadThisView()
+    }
+    
+    private func loadThisView(){
         StandardEngine.getInstance().delegate = self
-        gridView.grid = self
+        gridView.grid = StandardEngine.getInstance()
+        gridView.numCol = StandardEngine.getInstance().cols
+        gridView.numRow = StandardEngine.getInstance().rows
         let nc = NotificationCenter.default
         let name = Notification.Name(rawValue: "EngineUpdate")
         nc.addObserver(
             forName: name,
             object: nil,
             queue: nil) { (n) in
-                self.gridView.setNeedsDisplay()
+            self.gridView.setNeedsDisplay()
         }
+        gridView.setNeedsDisplay()
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,9 +57,5 @@ class SimulationViewController : UIViewController, EngineDelegate, GridViewDataS
     
     func engineDidUpdate(withGrid: GridProtocol) {
         self.gridView.setNeedsDisplay()
-    }
-    public subscript (row: Int, col: Int) -> CellState {
-        get { return StandardEngine.getInstance().grid[row,col] }
-        set { StandardEngine.getInstance().grid[row,col] = newValue }
     }
 }

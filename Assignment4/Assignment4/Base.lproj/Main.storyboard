@@ -46,10 +46,16 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="updateCols:" destination="9sO-z6-rUh" eventType="editingDidEnd" id="PdK-rR-9of"/>
+                                                </connections>
                                             </textField>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="z0z-L5-VTp">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" maximumValue="100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="z0z-L5-VTp">
                                                 <rect key="frame" x="168" y="89" width="94" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="colStepper:" destination="9sO-z6-rUh" eventType="valueChanged" id="Tvk-W7-2DO"/>
+                                                </connections>
                                             </stepper>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="refresh rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpU-rc-VE4">
                                                 <rect key="frame" x="101" y="123" width="89" height="21"/>
@@ -71,18 +77,30 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="updateRows:" destination="9sO-z6-rUh" eventType="editingDidEnd" id="uIQ-ck-or6"/>
+                                                </connections>
                                             </textField>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="B9g-vW-9N9">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" maximumValue="100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="B9g-vW-9N9">
                                                 <rect key="frame" x="165" y="29" width="94" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="rowsStepper:" destination="9sO-z6-rUh" eventType="touchUpInside" id="iBa-LD-lmH"/>
+                                                </connections>
                                             </stepper>
                                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.10000000000000001" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="MxV-NV-iCx">
                                                 <rect key="frame" x="34" y="145" width="221" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="timerrefreshRateChanged:" destination="9sO-z6-rUh" eventType="valueChanged" id="7eW-X1-tQY"/>
+                                                </connections>
                                             </slider>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJB-QW-Eao">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EJB-QW-Eao">
                                                 <rect key="frame" x="183" y="178" width="51" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="activateTimer:" destination="9sO-z6-rUh" eventType="valueChanged" id="7Qq-nf-BP7"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <constraints>
@@ -106,6 +124,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Instrumentation" image="Instrumentation" id="ZhS-1W-Nuj"/>
+                    <connections>
+                        <outlet property="colTextField" destination="lBg-AX-1aA" id="K6N-yb-AjS"/>
+                        <outlet property="rowTextField" destination="A1h-kC-AxC" id="w7d-mc-Y7O"/>
+                        <outlet property="timerOnOff" destination="EJB-QW-Eao" id="JOQ-Ca-GI3"/>
+                        <outlet property="timerRefreshRate" destination="MxV-NV-iCx" id="ubf-lI-mbY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ph0-HQ-Iky" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
