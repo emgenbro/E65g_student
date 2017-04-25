@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79699D461EAECA6300971CDD /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79699D451EAECA6300971CDD /* Grid.swift */; };
+		79699D481EAECAA900971CDD /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79699D471EAECAA900971CDD /* GridView.swift */; };
+		79699D4A1EAECAC400971CDD /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79699D491EAECAC400971CDD /* Engine.swift */; };
+		79699D4E1EAECB6500971CDD /* InstrumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79699D4B1EAECB6500971CDD /* InstrumentationViewController.swift */; };
+		79699D4F1EAECB6500971CDD /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79699D4C1EAECB6500971CDD /* SimulationViewController.swift */; };
+		79699D501EAECB6500971CDD /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79699D4D1EAECB6500971CDD /* StatisticsViewController.swift */; };
 		FBAD2E271E2BE417008207C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD2E261E2BE417008207C0 /* AppDelegate.swift */; };
 		FBAD2E291E2BE417008207C0 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD2E281E2BE417008207C0 /* FirstViewController.swift */; };
 		FBAD2E2B1E2BE417008207C0 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD2E2A1E2BE417008207C0 /* SecondViewController.swift */; };
@@ -16,6 +22,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79699D451EAECA6300971CDD /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		79699D471EAECAA900971CDD /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		79699D491EAECAC400971CDD /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		79699D4B1EAECB6500971CDD /* InstrumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentationViewController.swift; sourceTree = "<group>"; };
+		79699D4C1EAECB6500971CDD /* SimulationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
+		79699D4D1EAECB6500971CDD /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		FBAD2E231E2BE417008207C0 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBAD2E261E2BE417008207C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBAD2E281E2BE417008207C0 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +68,9 @@
 		FBAD2E251E2BE417008207C0 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				79699D4B1EAECB6500971CDD /* InstrumentationViewController.swift */,
+				79699D4C1EAECB6500971CDD /* SimulationViewController.swift */,
+				79699D4D1EAECB6500971CDD /* StatisticsViewController.swift */,
 				FBAD2E261E2BE417008207C0 /* AppDelegate.swift */,
 				FBAD2E281E2BE417008207C0 /* FirstViewController.swift */,
 				FBAD2E2A1E2BE417008207C0 /* SecondViewController.swift */,
@@ -63,6 +78,9 @@
 				FBAD2E2F1E2BE417008207C0 /* Assets.xcassets */,
 				FBAD2E311E2BE417008207C0 /* LaunchScreen.storyboard */,
 				FBAD2E341E2BE417008207C0 /* Info.plist */,
+				79699D451EAECA6300971CDD /* Grid.swift */,
+				79699D471EAECAA900971CDD /* GridView.swift */,
+				79699D491EAECAC400971CDD /* Engine.swift */,
 			);
 			path = FinalProject;
 			sourceTree = "<group>";
@@ -99,7 +117,7 @@
 				TargetAttributes = {
 					FBAD2E221E2BE417008207C0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 56MEECX7CG;
+						DevelopmentTeam = 9R6XFP2ZC7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -141,8 +159,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBAD2E2B1E2BE417008207C0 /* SecondViewController.swift in Sources */,
+				79699D4A1EAECAC400971CDD /* Engine.swift in Sources */,
 				FBAD2E271E2BE417008207C0 /* AppDelegate.swift in Sources */,
 				FBAD2E291E2BE417008207C0 /* FirstViewController.swift in Sources */,
+				79699D4E1EAECB6500971CDD /* InstrumentationViewController.swift in Sources */,
+				79699D4F1EAECB6500971CDD /* SimulationViewController.swift in Sources */,
+				79699D501EAECB6500971CDD /* StatisticsViewController.swift in Sources */,
+				79699D481EAECAA900971CDD /* GridView.swift in Sources */,
+				79699D461EAECA6300971CDD /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +289,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56MEECX7CG;
+				DEVELOPMENT_TEAM = 9R6XFP2ZC7;
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -279,7 +303,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56MEECX7CG;
+				DEVELOPMENT_TEAM = 9R6XFP2ZC7;
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -308,6 +332,7 @@
 				FBAD2E391E2BE417008207C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
