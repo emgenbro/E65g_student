@@ -5,25 +5,25 @@
 //  Created by Damon Emgenbroich on 4/12/17.
 //  Copyright © 2017 Harvard Division of Continuing Education. All rights reserved.
 //
-// 4)  (25 points) Simulation Tab:
-// Should have:
-//	•	a properly constrained GridView as in Assignment 3.
-//	•	a properly constrained UIButton which steps the delegate
-// SimulationViewController should:
-//	•	implement the EngineDelegate protocol
-//	•	in viewDidLoad: set itself as the delegate of the StandardEngine singleton
-//	•	invoke the step() method of the singleton when the step button is pressed
+/*
+ 
+ The Simulation tab should be equipped with two new buttons:
+ 
+ Save, which should prompt the user for a name and take the current representation and associate it with that name in the tableview on the instrumentation page and
+ 
+ Reset, which should completely clear the contents of the grid view
+ 
+ */
 //
 
 import UIKit
 
 class SimulationViewController : UIViewController, EngineDelegate {
     
-    
     @IBOutlet weak var gridView: GridView!
     @IBAction func stepButton(_ sender: UIButton) {
         _ = StandardEngine.getInstance().step()
-        gridView.setNeedsDisplay()
+        //gridView.setNeedsDisplay()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ class SimulationViewController : UIViewController, EngineDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         loadThisView()
+        //gridView.setNeedsDisplay()
     }
     
     private func loadThisView(){
@@ -48,7 +49,7 @@ class SimulationViewController : UIViewController, EngineDelegate {
             queue: nil) { (n) in
             self.gridView.setNeedsDisplay()
         }
-        gridView.setNeedsDisplay()
+        //gridView.setNeedsDisplay()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

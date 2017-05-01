@@ -41,7 +41,7 @@ import UIKit
     @IBInspectable var gridColor : UIColor = UIColor.darkGray
     @IBInspectable var gridWidth : CGFloat = 0.0
     // Updated since class
-    var grid: GridViewDataSource?
+    var grid: GridViewDataSource = StandardEngine.getInstance()
     
     var xColor = UIColor.black
     var xProportion = CGFloat(1.0)
@@ -72,7 +72,7 @@ import UIKit
                     size: cgSize
                 )
                 let path = UIBezierPath(ovalIn: subRect)
-                switch grid![(i, j)] {
+                switch grid[(i, j)] {
                 case .alive:
                     livingColor.setFill()
                 case .empty:
@@ -148,10 +148,8 @@ import UIKit
             else { return pos }
         //****************************************
         
-        if grid != nil {
-            grid![pos.row, pos.col] = grid![pos.row, pos.col].isAlive ? .empty : .alive
-            setNeedsDisplay()
-        }
+        grid[pos.row, pos.col] = grid[pos.row, pos.col].isAlive ? .empty : .alive
+        
         return pos
     }
     

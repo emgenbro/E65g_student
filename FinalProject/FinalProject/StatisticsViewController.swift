@@ -5,6 +5,10 @@
 //  Created by Damon Emgenbroich on 4/12/17.
 //  Copyright © 2017 Harvard Division of Continuing Education. All rights reserved.
 //
+//
+// The statistics tab should remain as is, but should be reset whenever the user
+// hits the reset button on the Simulation tab
+//
 
 import UIKit
 

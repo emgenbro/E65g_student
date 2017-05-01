@@ -5,26 +5,104 @@
 //  Created by Damon Emgenbroich on 4/12/17.
 //  Copyright © 2017 Harvard Division of Continuing Education. All rights reserved.
 /*
- 2) (20  points) Instrumentation Tab:
- In the instrumentation tab, create the following elements:
-	•	A labeled UITextField for number of rows accompanied by a UIStepper in units of 10
-	•	A labeled UITextField for number of columns accompanies by a UIStepper in units of 10
-	•	A labeled UISlider for refresh rate allowing values from 0.1 to 10 Hz
-	•	A labeled UISwitch which allows timed refresh to be turned on or off
- Make sure that layout looks good on all size classes with no warning messages.  All fonts and UI elements should be neatly  arranged and centered horizontally and vertically.
-
+ Instrumentation Tab
+ 
+ As before: the Instrumentation tab must allow the user to input the following characteristics:
+ 
+ rows,
+ columns,
+ refreshRate (or interval),
+ start/stop timed update of the grid
+ Additionally the Instrumentation tab should now have a table view Labeled "Configurations" whose number of rows and whose contents are determined by parsing a JSON file read from this link:
+ 
+ https://dl.dropboxusercontent.com/u/7544475/S65g.json (Links to an external site.)Links to an external site..
+ 
+ An example of the JSON file is:
+ 
+ S65g-1.json
+ 
+ Each element in top level array will contain a title for the row and contents for a preconfigured collection of cells to be turned on in the grid.
+ 
+ Below the tab the user should be allowed to enter a URL from which to read the file.  A default to use for this entry will be provided in class on the day we cover network access and JSON parsing.  Next to the textfield for entry there should be a button "Reload" which empties the Table and reloads it from the internet.
+ 
+ When the user clicks on a row in the file, a segue should occur to a GridEditor controller which displays the content of the file in a GridView with the file content shown in the view.  The user should be allowed to edit the cells and retain the representation in the tableview going forward.  Clicking a "Save" button on the GridEditor should cause the user to return to the main instrumentation page.  There should be a Cancel button instead a back button.
+ 
+ The Configuration table view should be located towards the top of the Instrumentation page and there should be a plus button in the navigation bar which allows the user to add rows to the
  
  */
 //
 
 import UIKit
 
-class InstrumentationViewController : UIViewController {
+class InstrumentationViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var sectionHeaders = [
+        "Configurations"
+    ]
+    
+    var data = [
+        [
+            "Blinker",
+            "Pentadecthlon",
+            "Glider Gun",
+            "Tumbler"
+    ]]
     
     @IBOutlet weak var rowTextField: UITextField!
     @IBOutlet weak var colTextField: UITextField!
     @IBOutlet weak var timerOnOff: UISwitch!
     @IBOutlet weak var timerRefreshRate: UISlider!
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = "basic"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let label = cell.contentView.subviews.first as! UILabel
+        label.text = data[indexPath.section][indexPath.item]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionHeaders[section]
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            var newData = data[indexPath.section]
+            newData.remove(at: indexPath.row)
+            data[indexPath.section] = newData
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.reloadData()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = tableView.indexPathForSelectedRow
+        if let indexPath = indexPath {
+            let fruitValue = data[indexPath.row]
+            if let vc = segue.destination as? GridEditorViewController {
+                vc.fruitValue = fruitValue
+                vc.saveClosure = { newValue in
+                    data[indexPath.row] = newValue
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+
     
     @IBAction func timerrefreshRateChanged(_ sender: UISlider) {
         if(timerOnOff.isOn){
