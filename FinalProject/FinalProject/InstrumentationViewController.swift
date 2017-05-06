@@ -40,14 +40,6 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
         "Configurations"
     ]
     
-    var data = [
-        [
-            "Blinker",
-            "Pentadecthlon",
-            "Glider Gun",
-            "Tumbler"
-    ]]
-    
     @IBOutlet weak var rowTextField: UITextField!
     @IBOutlet weak var colTextField: UITextField!
     @IBOutlet weak var timerOnOff: UISwitch!
@@ -56,53 +48,56 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+        self.tableView.reloadData()
+        
     }
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return data.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data[section].count
+        print("config count:", Array(GridConfig.getInstance().theConfig.keys).count)
+        return Array(GridConfig.getInstance().theConfig.keys).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "basic"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         let label = cell.contentView.subviews.first as! UILabel
-        label.text = data[indexPath.section][indexPath.item]
-        
+        label.text = Array(GridConfig.getInstance().theConfig.keys)[indexPath.item]
+        print(label.text!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionHeaders[section]
     }
+
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            var newData = data[indexPath.section]
-            newData.remove(at: indexPath.row)
-            data[indexPath.section] = newData
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            tableView.reloadData()
-        }
+//        if editingStyle == .delete {
+//            var newData = data
+//            newData.remove(at: indexPath.row)
+//            data[indexPath.section] = newData
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//            tableView.reloadData()
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.navigationController?.navigationBar.backItem?.title = "Cancel"
-        //let indexPath = tableView.indexPathForSelectedRow
-        //if let indexPath = indexPath {
-            //let fruitValue = data[indexPath.row]
-           // if let vc = segue.destination as? GridEditorViewController {
-                //vc.fruitValue = fruitValue
-               // vc.saveClosure = { newValue in
-                    //data[indexPath.row] = newValue
-               //     self.tableView.reloadData()
-              //  }
-           // }
-       // }
+        let indexPath = tableView.indexPathForSelectedRow
+        if let indexPath = indexPath {
+            let keyValue = Array(GridConfig.getInstance().theConfig.keys)[indexPath.row]
+            if let vc = segue.destination as? GridEditorViewController {
+                vc.configName = keyValue
+                vc.saveClosure = { newValue in
+//                    Array(GridConfig.getInstance().theConfig.keys)[indexPath.row] = newValue
+                    //GridConfig.getInstance().theConfig[newValue] = Grid(3,3)
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
     

@@ -428,7 +428,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.75748991966247559" green="0.94073837995529175" blue="0.74831646680831909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xWE-cb-HSr" firstAttribute="trailing" secondItem="Ae7-le-KFP" secondAttribute="trailingMargin" id="0FB-PA-6pa"/>
                             <constraint firstItem="My7-MR-HSX" firstAttribute="leading" secondItem="Ae7-le-KFP" secondAttribute="leadingMargin" id="M1j-jF-jEW"/>
@@ -453,7 +453,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editGrid" destination="97V-fU-TNs" id="yKv-sZ-HAc"/>
                         <outlet property="fruitValueTextField" destination="xWE-cb-HSr" id="php-a8-lr8"/>
+                        <outlet property="gridConfigName" destination="xWE-cb-HSr" id="mLQ-he-kuf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wo-lc-JQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
