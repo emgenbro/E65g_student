@@ -58,6 +58,7 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
         navigationController?.isNavigationBarHidden = true
     }
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
     }
@@ -90,17 +91,18 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = tableView.indexPathForSelectedRow
-        if let indexPath = indexPath {
-            let fruitValue = data[indexPath.row]
-            if let vc = segue.destination as? GridEditorViewController {
-                vc.fruitValue = fruitValue
-                vc.saveClosure = { newValue in
-                    data[indexPath.row] = newValue
-                    self.tableView.reloadData()
-                }
-            }
-        }
+        self.navigationController?.navigationBar.backItem?.title = "Cancel"
+        //let indexPath = tableView.indexPathForSelectedRow
+        //if let indexPath = indexPath {
+            //let fruitValue = data[indexPath.row]
+           // if let vc = segue.destination as? GridEditorViewController {
+                //vc.fruitValue = fruitValue
+               // vc.saveClosure = { newValue in
+                    //data[indexPath.row] = newValue
+               //     self.tableView.reloadData()
+              //  }
+           // }
+       // }
     }
 
     

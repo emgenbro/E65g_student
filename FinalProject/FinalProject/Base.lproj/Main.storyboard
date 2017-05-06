@@ -39,11 +39,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGC-Vb-u5u">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGC-Vb-u5u">
                                 <rect key="frame" x="0.0" y="-1" width="320" height="520"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DJG-o3-Nb8" userLabel="Controls">
-                                        <rect key="frame" x="0.0" y="67" width="320" height="229"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DJG-o3-Nb8" userLabel="Controls">
+                                        <rect key="frame" x="20" y="67" width="280" height="220"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="number of rows" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIy-Wh-dxo">
                                                 <rect key="frame" x="86" y="-1" width="120" height="21"/>
@@ -169,8 +169,8 @@
                         <color key="backgroundColor" red="0.75748991966247559" green="0.94073837995529175" blue="0.74831646680831909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zGC-Vb-u5u" firstAttribute="leading" secondItem="Wl5-JI-3I7" secondAttribute="leading" id="Amk-8Q-EzW"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="zGC-Vb-u5u" secondAttribute="bottom" constant="48" id="LUy-7M-DdA"/>
-                            <constraint firstItem="zGC-Vb-u5u" firstAttribute="top" secondItem="Wl5-JI-3I7" secondAttribute="top" id="OAv-0h-2nf"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="zGC-Vb-u5u" secondAttribute="bottom" constant="49" id="LUy-7M-DdA"/>
+                            <constraint firstItem="zGC-Vb-u5u" firstAttribute="top" secondItem="Wl5-JI-3I7" secondAttribute="top" constant="-1" id="OAv-0h-2nf"/>
                             <constraint firstAttribute="trailing" secondItem="zGC-Vb-u5u" secondAttribute="trailing" id="t2X-Fu-jie"/>
                         </constraints>
                     </view>
@@ -328,6 +328,22 @@
                                             <constraint firstAttribute="height" constant="240" id="ktu-k9-rOR"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gd-9I-BF6">
+                                        <rect key="frame" x="137" y="101" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="SaveGrid:" destination="5dz-IF-pre" eventType="touchUpInside" id="Mps-ac-3AE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoL-9Y-FtI">
+                                        <rect key="frame" x="234" y="101" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Reset"/>
+                                        <connections>
+                                            <action selector="resetGrid:" destination="5dz-IF-pre" eventType="touchUpInside" id="Tni-jB-pdo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="uJD-4n-Hv8" firstAttribute="centerX" secondItem="UM5-SM-Pui" secondAttribute="centerX" id="lQg-MJ-zu4"/>
@@ -427,7 +443,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Fruit Editor" id="1q2-yB-Cwg" userLabel="Fruit Editor">
+                    <navigationItem key="navigationItem" title="Grid Editor" id="1q2-yB-Cwg" userLabel="Editor">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="iwD-qa-cFX">
                             <connections>
                                 <action selector="save:" destination="dR4-oF-cSu" id="2q3-dJ-kzE"/>

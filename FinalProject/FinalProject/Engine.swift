@@ -99,6 +99,9 @@ class StandardEngine: EngineProtocol, GridViewDataSource {
         self.instance = StandardEngine(rows, cols)
         return instance!
     }
+    func reset(){
+        self.grid = Grid(rows, cols)
+    }
     func step() -> GridProtocol {
         let nextGrid = grid.next()
         self.grid = nextGrid

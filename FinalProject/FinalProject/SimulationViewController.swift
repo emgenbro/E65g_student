@@ -35,7 +35,13 @@ class SimulationViewController : UIViewController, EngineDelegate {
         loadThisView()
         //gridView.setNeedsDisplay()
     }
+    @IBAction func SaveGrid(_ sender: UIButton) {
+    }
     
+    @IBAction func resetGrid(_ sender: UIButton) {
+        StandardEngine.getInstance().reset()
+        
+    }
     private func loadThisView(){
         StandardEngine.getInstance().delegate = self
         gridView.grid = StandardEngine.getInstance()
