@@ -49,6 +49,7 @@ class GridEditorViewController: UIViewController, EngineDelegate  {
         if let newValue = gridConfigName.text,
             let saveClosure = saveClosure {
             saveClosure(newValue)
+            GridConfig.getInstance().theConfig[newValue] = editGridEngine.grid as? Grid
             StandardEngine.getInstance().grid = GridConfig.getInstance().theConfig[newValue]!
             StandardEngine.getInstance().rows = GridConfig.getInstance().theConfig[newValue]!.size.rows
             StandardEngine.getInstance().cols = GridConfig.getInstance().theConfig[newValue]!.size.cols

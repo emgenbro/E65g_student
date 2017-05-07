@@ -32,6 +32,18 @@ class SimulationViewController : UIViewController, EngineDelegate {
     }
     @IBAction func SaveGrid(_ sender: UIButton) {
         print(GridConfig.convertToString(grid: StandardEngine.getInstance().grid as! Grid))
+        let alert = UIAlertController(title: "Save Grid", message: "Enter Config Name", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            print("Text field: \(textField?.text ?? "NewLifeGrid")")
+            if(textField?.text != ""){
+                GridConfig.getInstance().theConfig[(textField?.text)!] = StandardEngine.getInstance().grid as? Grid
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func resetGrid(_ sender: UIButton) {
@@ -61,4 +73,6 @@ class SimulationViewController : UIViewController, EngineDelegate {
     func engineDidUpdate(withGrid: GridProtocol) {
         self.gridView.setNeedsDisplay()
     }
+    
+    
 }
