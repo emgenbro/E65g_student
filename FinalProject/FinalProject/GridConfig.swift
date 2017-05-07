@@ -19,20 +19,32 @@ class GridConfig {
                 let title = gridConfig["title"] as! String
                 print(title)
                 let contents = gridConfig["contents"] as! [[Int]]
-                print(contents)
-                self.theConfig[title] = Grid(10, 10)
+                //print(contents)
+                var size = 10
                 for cellPosition in contents {
                     let x = cellPosition[0] as Int
                     let y = cellPosition[1] as Int
-                    self.theConfig[title]?[x,y]=CellState.born
+                    if(x > size){
+                        size = x
+                    }
+                    if(y > size){
+                        size = y
+                    }
+                }
+                self.theConfig[title] = Grid(Int(roundUp(Double(size), toNearest:10)),Int(roundUp(Double(size), toNearest:10)))
+                for cellPosition in contents {
+                    let x = cellPosition[0] as Int
+                    let y = cellPosition[1] as Int
+                    self.theConfig[title]?[x,y]=CellState.alive
                 }
             }
-            print(self.theConfig)
+            //print(self.theConfig)
         }
     }
-        
     
-    
+    func roundUp(_ value: Double, toNearest: Double) -> Double {
+        return ceil(value / toNearest) * toNearest
+    }
     static func getInstance() -> GridConfig {
         if(self.instance == nil){
             let fetcher = Fetcher()
@@ -55,5 +67,59 @@ class GridConfig {
     
     private init(){
         configJson = []
+    }
+    
+    static func convertToString(grid: Grid) -> String {
+        var representation : String = "empty," + String(grid.size.rows) + "," + String(grid.size.cols) + ":"
+        
+        (0 ..< grid.size.rows).forEach { i in
+            (0 ..< grid.size.cols).forEach { j in
+                
+                if(grid[j,i] != CellState.empty){
+                    representation += String(describing: grid[i,j])
+                    representation += ","
+                    representation += String(i)
+                    representation += ","
+                    representation += String(j)
+                    representation += ":"
+                }
+            }
+        }
+        
+        representation.remove(at: representation.index(before: representation.endIndex))
+        print(representation)
+        return representation
+        
+    }
+    
+    static func convertToGrid(_ gridString: String) -> Grid {
+        var grid = Grid(10,10)
+        let gridArray : [String] = gridString.components(separatedBy: ":")
+        let gridSizeArray : [String] = gridArray[0].components(separatedBy: ",")
+        let rows = Int(gridSizeArray[1])
+        let cols = Int(gridSizeArray[2])
+        if(rows! >= 10 && cols! >= 10)
+        {
+            grid = Grid(rows!,cols!)
+        }
+        for cell in gridArray {
+            let cellArray : [String] = cell.components(separatedBy: ",")
+            let cellState = cellArray[0]
+            let cellRow = Int(cellArray[1])
+            let cellCol = Int(cellArray[2])
+            
+            switch cellState
+            {
+                case "born":
+                    grid[cellRow!,cellCol!]=CellState.born
+                case "alive":
+                    grid[cellRow!,cellCol!]=CellState.alive
+                case "died":
+                    grid[cellRow!,cellCol!]=CellState.died
+                default:
+                    grid[cellRow!,cellCol!]=CellState.empty
+            }
+        }
+        return grid
     }
 }

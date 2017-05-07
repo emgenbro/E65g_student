@@ -4,32 +4,33 @@
 //
 //  Created by Damon Emgenbroich on 4/12/17.
 //  Copyright © 2017 Harvard Division of Continuing Education. All rights reserved.
-/*
- Instrumentation Tab
- 
- As before: the Instrumentation tab must allow the user to input the following characteristics:
- 
- rows,
- columns,
- refreshRate (or interval),
- start/stop timed update of the grid
- Additionally the Instrumentation tab should now have a table view Labeled "Configurations" whose number of rows and whose contents are determined by parsing a JSON file read from this link:
- 
- https://dl.dropboxusercontent.com/u/7544475/S65g.json (Links to an external site.)Links to an external site..
- 
- An example of the JSON file is:
- 
- S65g-1.json
- 
- Each element in top level array will contain a title for the row and contents for a preconfigured collection of cells to be turned on in the grid.
- 
- Below the tab the user should be allowed to enter a URL from which to read the file.  A default to use for this entry will be provided in class on the day we cover network access and JSON parsing.  Next to the textfield for entry there should be a button "Reload" which empties the Table and reloads it from the internet.
- 
- When the user clicks on a row in the file, a segue should occur to a GridEditor controller which displays the content of the file in a GridView with the file content shown in the view.  The user should be allowed to edit the cells and retain the representation in the tableview going forward.  Clicking a "Save" button on the GridEditor should cause the user to return to the main instrumentation page.  There should be a Cancel button instead a back button.
- 
- The Configuration table view should be located towards the top of the Instrumentation page and there should be a plus button in the navigation bar which allows the user to add rows to the
- 
- */
+//
+//Instrumentation Tab
+//
+//As before: the Instrumentation tab must allow the user to input the following characteristics:
+//
+//rows,
+//columns,
+//refreshRate (or interval),
+//start/stop timed update of the grid
+//Additionally the Instrumentation tab should now have a table view Labeled "Configurations" 
+//whose number of rows and whose contents are determined by parsing a JSON file read from this link:
+//
+//https://dl.dropboxusercontent.com/u/7544475/S65g.json (Links to an external site.)Links to an external site..
+//
+//An example of the JSON file is:
+//
+//S65g-1.json
+//
+//Each element in top level array will contain a title for the row and contents for a preconfigured collection of cells to be turned on in the grid.
+//
+//When the user clicks on a row in the file, a segue should occur to a GridEditor controller which displays the content of the file in a GridView with the 
+//file content shown in the view.  The user should be allowed to edit the cells and retain the representation in the tableview going forward.  Clicking a 
+//"Save" button on the GridEditor should cause the user to return to the main instrumentation page after publishing the Grid object from the GridEditor via 
+//NotificationCenter.  There should be a Cancel button instead a back button.
+//
+//The Configuration table view should be located towards the top of the Instrumentation page and there should be a plus button in the navigation bar which 
+//allows the user to add rows to the table.
 //
 
 import UIKit
@@ -52,11 +53,11 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
         
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionHeaders.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("config count:", Array(GridConfig.getInstance().theConfig.keys).count)
+        //print("config count:", Array(GridConfig.getInstance().theConfig.keys).count)
         return Array(GridConfig.getInstance().theConfig.keys).count
     }
     
@@ -65,7 +66,7 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         let label = cell.contentView.subviews.first as! UILabel
         label.text = Array(GridConfig.getInstance().theConfig.keys)[indexPath.item]
-        print(label.text!)
+        //print(label.text!)
         return cell
     }
     
@@ -85,15 +86,13 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.navigationController?.navigationBar.backItem?.title = "Cancel"
         let indexPath = tableView.indexPathForSelectedRow
         if let indexPath = indexPath {
             let keyValue = Array(GridConfig.getInstance().theConfig.keys)[indexPath.row]
             if let vc = segue.destination as? GridEditorViewController {
                 vc.configName = keyValue
                 vc.saveClosure = { newValue in
-//                    Array(GridConfig.getInstance().theConfig.keys)[indexPath.row] = newValue
-                    //GridConfig.getInstance().theConfig[newValue] = Grid(3,3)
+                    StandardEngine.getInstance().grid = vc.editGridEngine.grid
                     self.tableView.reloadData()
                 }
             }

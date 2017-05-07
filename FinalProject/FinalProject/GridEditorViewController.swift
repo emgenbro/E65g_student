@@ -9,9 +9,8 @@
 
 import UIKit
 
-class GridEditorViewController: UIViewController {
+class GridEditorViewController: UIViewController, EngineDelegate  {
     
-    //var fruitValue: String?
     var configName: String?
     var saveClosure: ((String) -> Void)?
     var editGridEngine = StandardEngine(10, 10)
@@ -23,11 +22,22 @@ class GridEditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
+
         if let configName = configName {
             gridConfigName.text = configName
+            editGridEngine.delegate = self
+            editGridEngine.cols = GridConfig.getInstance().theConfig[configName]!.size.cols
+            editGridEngine.rows = GridConfig.getInstance().theConfig[configName]!.size.rows
             editGridEngine.grid = GridConfig.getInstance().theConfig[configName]!
             editGrid.grid = editGridEngine
+            editGrid.numCol = editGridEngine.cols
+            editGrid.numRow = editGridEngine.rows
+            self.editGrid.setNeedsDisplay()
         }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.editGrid.setNeedsDisplay()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,7 +49,14 @@ class GridEditorViewController: UIViewController {
         if let newValue = gridConfigName.text,
             let saveClosure = saveClosure {
             saveClosure(newValue)
+            StandardEngine.getInstance().grid = GridConfig.getInstance().theConfig[newValue]!
+            StandardEngine.getInstance().rows = GridConfig.getInstance().theConfig[newValue]!.size.rows
+            StandardEngine.getInstance().cols = GridConfig.getInstance().theConfig[newValue]!.size.cols
+            
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    func engineDidUpdate(withGrid: GridProtocol) {
+        self.editGrid.setNeedsDisplay()
     }
 }
