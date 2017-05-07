@@ -57,7 +57,6 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("config count:", Array(GridConfig.getInstance().theConfig.keys).count)
         return Array(GridConfig.getInstance().theConfig.keys).count
     }
     
@@ -66,7 +65,6 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         let label = cell.contentView.subviews.first as! UILabel
         label.text = Array(GridConfig.getInstance().theConfig.keys)[indexPath.item]
-        //print(label.text!)
         return cell
     }
     

@@ -17,7 +17,7 @@ class GridConfig {
             for gridConfigDictonary in configJson {
                 let gridConfig = gridConfigDictonary as! NSDictionary
                 let title = gridConfig["title"] as! String
-                print(title)
+                //print(title)
                 let contents = gridConfig["contents"] as! [[Int]]
                 //print(contents)
                 var size = 10
@@ -87,7 +87,7 @@ class GridConfig {
         }
         
         representation.remove(at: representation.index(before: representation.endIndex))
-        print(representation)
+        //print(representation)
         return representation
         
     }

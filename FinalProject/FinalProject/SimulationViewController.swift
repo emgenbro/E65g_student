@@ -16,7 +16,6 @@
 import UIKit
 
 class SimulationViewController : UIViewController, EngineDelegate {
-    
     @IBOutlet weak var gridView: GridView!
     @IBAction func stepButton(_ sender: UIButton) {
         _ = StandardEngine.getInstance().step()
@@ -42,6 +41,7 @@ class SimulationViewController : UIViewController, EngineDelegate {
             if(textField?.text != ""){
                 GridConfig.getInstance().theConfig[(textField?.text)!] = StandardEngine.getInstance().grid as? Grid
             }
+            UserDefaults.standard.set(GridConfig.convertToString(grid: StandardEngine.getInstance().grid as! Grid), forKey: "gridKey")
         }))
         self.present(alert, animated: true, completion: nil)
     }
