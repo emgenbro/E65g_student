@@ -48,7 +48,9 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = false
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusBttnTouched))
+        self.navigationItem.leftBarButtonItem = add
         self.tableView.reloadData()
         
     }
@@ -91,22 +93,46 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
                 vc.configName = keyValue
                 vc.saveClosure = { newValue in
                     StandardEngine.getInstance().grid = vc.editGridEngine.grid
+                    self.colTextField.text = String(vc.editGridEngine.grid.size.cols)
+                    self.rowTextField.text = String(vc.editGridEngine.grid.size.rows)
                     self.tableView.reloadData()
                 }
             }
         }
+        else {
+            let keyValue = "NewConfig"
+            if let vc = segue.destination as? GridEditorViewController {
+                GridConfig.getInstance().theConfig[keyValue] = Grid(Int(self.rowTextField.text!)!,Int(self.colTextField.text!)!)
+                vc.configName = keyValue
+                vc.saveClosure = { newValue in
+                    StandardEngine.getInstance().grid = vc.editGridEngine.grid
+                    self.colTextField.text = String(vc.editGridEngine.grid.size.cols)
+                    self.rowTextField.text = String(vc.editGridEngine.grid.size.rows)
+                    self.tableView.reloadData()
+                }
+            }
+
+        }
+    }
+    
+    func plusBttnTouched(sender: UIBarButtonItem) {
+        
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.performSegue(withIdentifier: "toGridEditor", sender: self)
+        })
+        
     }
 
     
     @IBAction func timerrefreshRateChanged(_ sender: UISlider) {
         if(timerOnOff.isOn){
             StandardEngine.getInstance().refreshRate = 0.0
-            StandardEngine.getInstance().refreshRate = Double(timerRefreshRate.value)
+            StandardEngine.getInstance().refreshRate = Double(1/timerRefreshRate.value)
         }
     }
     @IBAction func activateTimer(_ sender: UISwitch) {
         if(sender.isOn){
-            StandardEngine.getInstance().refreshRate = Double(timerRefreshRate.value)
+            StandardEngine.getInstance().refreshRate = Double(1/timerRefreshRate.value)
         }
         else {
             StandardEngine.getInstance().refreshRate = 0.0
@@ -115,12 +141,14 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
     @IBAction func updateRows(_ sender: UITextField) {
         if(isInt(string: sender.text) && Int(sender.text!)! > 0 && Int(sender.text!)! <= 100){
             //let cols = StandardEngine.getInstance().cols
+            self.colTextField.text = sender.text
             _ = StandardEngine.getNewInstance(rows: Int(sender.text!)!, cols: Int(sender.text!)!)
         }
     }
     @IBAction func updateCols(_ sender: UITextField) {
         if(isInt(string: sender.text) && Int(sender.text!)! > 0 && Int(sender.text!)! <= 100){
             //let rows = StandardEngine.getInstance().rows
+            self.rowTextField.text = sender.text
             _ = StandardEngine.getNewInstance(rows: Int(sender.text!)!, cols: Int(sender.text!)!)
         }
     }
@@ -129,6 +157,7 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
         if(sender.value > 0){
             //let cols = StandardEngine.getInstance().cols
             self.rowTextField.text = String(Int(sender.value))
+            self.colTextField.text = String(Int(sender.value))
             _ = StandardEngine.getNewInstance(rows: Int(sender.value), cols: Int(sender.value))
         }
     }
@@ -137,6 +166,7 @@ class InstrumentationViewController : UIViewController, UITableViewDelegate, UIT
         if(sender.value > 0){
             //let rows = StandardEngine.getInstance().rows
             self.colTextField.text = String(Int(sender.value))
+            self.rowTextField.text = String(Int(sender.value))
             _ = StandardEngine.getNewInstance(rows: Int(sender.value), cols: Int(sender.value))
         }
     }

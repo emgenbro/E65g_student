@@ -78,7 +78,7 @@ public struct Grid: GridProtocol {
     }
     
     public init(_ rows: Int, _ cols: Int, cellInitializer: (GridPosition) -> CellState = { _, _ in .empty }) {
-        _cells = [[CellState]](repeatElement( [CellState](repeatElement(.empty, count: rows)), count: cols))
+        _cells = [[CellState]](repeatElement( [CellState](repeatElement(.empty, count: cols)), count: rows))
         size = GridSize(rows, cols)
         lazyPositions(self.size).forEach { self[$0.row, $0.col] = cellInitializer($0) }
     }
