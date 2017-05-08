@@ -13,19 +13,23 @@
         <!--Instrumentation-->
         <scene sceneID="X9f-I0-nep">
             <objects>
-                <navigationController id="cr2-KZ-Mpg" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="cr2-KZ-Mpg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Instrumentation" image="Instrumentation" id="Qaj-5p-WgG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rG1-VH-uZD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="X45-Nl-JRf">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="9sO-z6-rUh" kind="relationship" relationship="rootViewController" id="rDt-iq-mSP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSS-xL-lwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1434" y="1"/>
+            <point key="canvasLocation" x="-1585" y="-41"/>
         </scene>
         <!--Instrumentation-->
         <scene sceneID="BIf-EU-CNV">
@@ -44,7 +48,7 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VuE-yc-2Uq">
                                         <rect key="frame" x="0.0" y="65" width="375" height="333"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.75748991966247559" green="0.94073837995529175" blue="0.74831646680831909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="289" id="S4a-zH-n2A"/>
                                         </constraints>
@@ -68,7 +72,7 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <segue destination="dR4-oF-cSu" kind="show" id="JxY-uG-UTm"/>
+                                                    <segue destination="dR4-oF-cSu" kind="show" identifier="toGridEditor" id="JxY-uG-UTm"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -255,9 +259,11 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Instrumentation" image="Instrumentation" id="ZhS-1W-Nuj"/>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="hjM-f3-DQQ">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="107-TW-wbU"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="colTextField" destination="lBg-AX-1aA" id="K6N-yb-AjS"/>
                         <outlet property="rowTextField" destination="A1h-kC-AxC" id="w7d-mc-Y7O"/>
